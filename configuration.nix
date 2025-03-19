@@ -76,7 +76,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -128,12 +128,10 @@
   	environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-     	noto-fonts-cjk-sans
      	neovim
      	samsung-unified-linux-driver
      	corectrl
      	fish
-     	home-manager
      	gnome-tweaks
     	inxi
      	git
@@ -142,6 +140,10 @@
       sl
       gh
 ];
+
+  fonts.packages = with pkgs; [
+    noto-fonts-cjk-sans
+  ];
 
   qt = {
     enable = true;
