@@ -104,9 +104,6 @@
     ];
   };
 
-  # Enable automatic login for the user.
-  
-    # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   
    # Install firefox.
   programs.firefox.enable = true;
