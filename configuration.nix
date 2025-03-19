@@ -119,7 +119,6 @@
   localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
 };
   programs.steam.gamescopeSession.enable = true;
-  programs.neovim.defaultEditor = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
