@@ -56,8 +56,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-   services.xserver.displayManager.gdm.enable = true;
-   services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
 
   # Plasma 6
@@ -108,6 +108,19 @@
    # Install firefox.
   programs.firefox.enable = true;
   programs.nix-ld.enable = true;
+
+
+  # Exposes secrets
+  services.gnome.gnome-keyring.enable = true;
+
+  # niri setup
+  programs.niri = {
+    enable = true;
+  };
+  
+  programs.waybar = {
+    enable = true;
+  };
   
   programs.steam = {
   enable = true;
@@ -135,6 +148,10 @@
       nh
       sl
       gh
+      wl-clipboard
+      mako
+      xwayland-satellite
+      
 ];
 
   fonts.packages = with pkgs; [
