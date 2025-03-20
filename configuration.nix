@@ -148,9 +148,15 @@
       nh
       sl
       gh
+<<<<<<< HEAD
       wl-clipboard
       mako
       xwayland-satellite
+=======
+      hyprshot
+      wl-clipboard
+      mako
+>>>>>>> a47625ef886a52fb068bd6176a553aaed4277acb
       
 ];
 
