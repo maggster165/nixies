@@ -10,6 +10,8 @@
       ./hardware-configuration.nix
     ];
 
+  hardware.xpadneo.enable = true;
+  hardware.i2c.enable = true;
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -34,7 +36,7 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
+  
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "cs_CZ.UTF-8";
     LC_IDENTIFICATION = "cs_CZ.UTF-8";
@@ -48,16 +50,19 @@
   };
   i18n.inputMethod = {
   enable = true;
-  type = "ibus";
-  ibus.engines = with pkgs.ibus-engines; [mozc];
+  type = "fcitx5";
+  fcitx5.addons = with pkgs; [
+      fcitx5-mozc-ut
+      fcitx5-gtk
+    ];
   };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+  # Enable the GNOME Desktop Environment. (advised to keep enabled for niri)
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
 
   # Plasma 6
@@ -75,9 +80,19 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Portal settings
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gnome
+    ];
+  };
+  
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  security.polkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -137,6 +152,7 @@
   	environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+      nautilus
      	neovim
      	samsung-unified-linux-driver
      	corectrl
@@ -151,11 +167,23 @@
       wl-clipboard
       mako
       xwayland-satellite
+      alacritty
+      wofi
+      gnome-disk-utility
+      polkit_gnome
+
+      waybar-mpris
+      ddcutil
+
+
       
+
+            
 ];
 
   fonts.packages = with pkgs; [
     noto-fonts-cjk-sans
+    font-awesome
   ];
 
   qt = {
@@ -176,6 +204,24 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+
+  systemd = {
+  user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+  };
+};
+  
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

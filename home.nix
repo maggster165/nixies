@@ -1,5 +1,6 @@
 { lib, pkgs, inputs, config, ... }:
 {
+ 
   home = {
     username = "maggie";
     homeDirectory = "/home/maggie";
@@ -28,12 +29,28 @@
     vscode-fhs
     goverlay
     mangohud
+    kitty
+
+    # THE SHAMEFUL SECTION
+    hyprpicker
+    hyprpaper
+    # END OF SHAMEFUL SECTION
+        
+    hellwal
+
+
+    # school crap
+    libreoffice
   ];
   
     
   programs.ghostty = {
     enable = true;
-    settings = { command = "${pkgs.fish}/bin/fish --login --interactive"; };
+    settings = {
+      command = "${pkgs.fish}/bin/fish --login --interactive";
+      window-padding-x = "2";
+      window-padding-y = "2";
+    };
   };
 
   programs.helix = {
