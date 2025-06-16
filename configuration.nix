@@ -69,12 +69,12 @@
   ];
 
   # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "maggie";
+  # services.displayManager.autoLogin.enable = true;
+  # services.displayManager.autoLogin.user = "maggie";
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
+  # systemd.services."getty@tty1".enable = false;
+  # systemd.services."autovt@tty1".enable = false;
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -86,6 +86,10 @@
     gamescopeSession.enable = true; # Enable Gamescope
   	localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
 	};
+
+  programs.niri = {
+    enable = true;
+  };
 
   programs.kdeconnect = {
     enable = true;
@@ -112,9 +116,17 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
      git
+     gh
      neovim
      helix
      ddcutil
+
+
+     waybar
+     alacritty
+     fuzzel
+     xwayland-satellite
+     hyprpaper
   ];
 
   xdg.portal = {
@@ -159,7 +171,7 @@
   system.stateVersion = "25.05"; # Did you read the comment?
   system.autoUpgrade = {
     enable = true;
-    flake = inputs.self.outPath;
+    flake = "/home/maggie/nixies";
     flags = [
       "--update-input"
       "nixpkgs"

@@ -23,11 +23,6 @@
   inputs.moonlight.packages.${pkgs.system}.discord
   ];
 
-  programs.git = {
-    enable = true;
-    userName = "Maggie M.";
-    userEmail = "magstheidiot@gmail.com";
-  };
 
   programs.moonlight-mod = {
     enable = true;
