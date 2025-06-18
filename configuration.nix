@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, pkgs-xs, inputs, ... }:
 
 {
   imports =
@@ -12,6 +12,11 @@
       ./systemconfig.nix
       ./locale.nix
     ];
+
+    nixpkgs.overlays = [
+      inputs.niri.overlays.niri
+    ];
+
 
   networking.hostName = "Nijika"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -89,6 +94,7 @@
 
   programs.niri = {
     enable = true;
+    package = pkgs.niri-unstable;
   };
 
   programs.kdeconnect = {
@@ -125,9 +131,10 @@
      waybar
      alacritty
      fuzzel
-     xwayland-satellite
      hyprpaper
+     xwayland-satellite-unstable
   ];
+
 
   xdg.portal = {
     enable = true;

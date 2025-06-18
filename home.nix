@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ...}:
+{ config, pkgs, pkgs-xs, inputs, ...}:
 
 {
   imports = [
@@ -22,6 +22,8 @@
   home.packages = with pkgs; [
   inputs.moonlight.packages.${pkgs.system}.discord
   ];
+
+  
 
 
   programs.moonlight-mod = {
