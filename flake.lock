@@ -202,8 +202,7 @@
         "niri": "niri",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs_2",
-        "spicetify-nix": "spicetify-nix",
-        "xwpin": "xwpin"
+        "spicetify-nix": "spicetify-nix"
       }
     },
     "spicetify-nix": {
@@ -285,22 +284,6 @@
       "original": {
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
-        "type": "github"
-      }
-    },
-    "xwpin": {
-      "locked": {
-        "lastModified": 1739260703,
-        "narHash": "sha256-XDhVq2dfLqeGJewSC9Dkd81ZHuqMajw2tdpHPmNaaAs=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "86673af28a29d77fd59790b566425ba86f644ba0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "86673af28a29d77fd59790b566425ba86f644ba0",
         "type": "github"
       }
     }
