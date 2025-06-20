@@ -96,6 +96,9 @@
     enable = true;
     package = pkgs.niri-unstable;
   };
+  programs.gpu-screen-recorder = {
+    enable = true;
+  };
 
   programs.kdeconnect = {
     enable = true;
@@ -127,11 +130,17 @@
      helix
      ddcutil
 
+     killall
+     libnotify
 
      waybar
      alacritty
-     fuzzel
+     walker
+     pavucontrol
+     blueberry
+     mako
      hyprpaper
+     gpu-screen-recorder
      xwayland-satellite-unstable
   ];
 

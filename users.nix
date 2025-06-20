@@ -27,7 +27,6 @@
   	services.flatpak.packages = [
     		"org.vinegarhq.Sober"
     		"com.usebottles.bottles"
-    		"com.dec05eba.gpu_screen_recorder"
     		"be.alexandervanhee.gradia"
  	 ];
 }
