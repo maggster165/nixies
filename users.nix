@@ -7,18 +7,12 @@
     		shell = pkgs.fish;
     		packages = with pkgs; [
     		#  thunderbird
-    		blackbox-terminal
     		prismlauncher
     		pcsx2
     		telegram-desktop
     		deltachat-desktop
     		gapless
     		video-trimmer
-    		resources
-    		showtime
-    		gnomeExtensions.caffeine
-    		gnomeExtensions.appindicator
-    		gnomeExtensions.brightness-control-using-ddcutil
     		tuba
     		];
   	};
