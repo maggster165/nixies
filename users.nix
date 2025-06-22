@@ -14,7 +14,6 @@
     		deltachat-desktop
     		gapless
     		video-trimmer
-    		handbrake
     		resources
     		showtime
     		gnomeExtensions.caffeine
