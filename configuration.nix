@@ -140,6 +140,7 @@
      blueberry
      mako
      hyprpaper
+     bc
      gpu-screen-recorder
      xwayland-satellite-unstable
   ];
@@ -152,11 +153,11 @@
     ];
   };
 
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-    style = "adwaita-dark";
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "gnome";
+  #   style = "adwaita-dark";
+  # };
 
 
   # Some programs need SUID wrappers, can be configured further or are

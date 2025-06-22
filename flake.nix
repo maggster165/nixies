@@ -15,9 +15,8 @@
       url = "github:moonlight-mod/moonlight";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
-
-  outputs = { self, nixpkgs, spicetify-nix, nix-flatpak, niri, home-manager, moonlight, ...}@inputs: {
+}
+  outputs = { self, nixpkgs, spicetify-nix, nix-flatpak, niri, home-manager, moonlight, amulet, ...}@inputs: {
     nixosConfigurations.Nijika = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = {

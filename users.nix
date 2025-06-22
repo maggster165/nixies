@@ -28,5 +28,6 @@
     		"org.vinegarhq.Sober"
     		"com.usebottles.bottles"
     		"be.alexandervanhee.gradia"
+				"io.mrarm.mcpelauncher"
  	 ];
 }
