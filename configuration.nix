@@ -116,6 +116,15 @@
      neovim
      helix
      ddcutil
+
+
+    (let base = pkgs.appimageTools.defaultFhsEnvArgs; in
+      pkgs.buildFHSEnv (base // {
+      name = "fhs";
+      profile = "export FHS=1";
+      runScript = "fish";
+      extraOutputsToInstall = ["dev"];
+    }))
   ];
 
   xdg.portal = {

@@ -29,6 +29,7 @@
     userEmail = "magstheidiot@gmail.com";
   };
 
+
   programs.moonlight-mod = {
     enable = true;
     configs.stable = {
