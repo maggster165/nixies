@@ -2,8 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
-
+{ config, pkgs, inputs, lib, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -11,8 +10,25 @@
       ./users.nix
       ./systemconfig.nix
       ./locale.nix
+      ./ld.nix
+      ./overlays.nix
     ];
 
+  fileSystems."/run/media/maggie/Storage (fast)" = {
+    device =  "/dev/disk/by-uuid/DE90A86490A844BD";
+    fsType = "ntfs";
+    options = ["nosuid,nodev,nofail,x-gvfs-show"];
+  };
+  fileSystems."/run/media/maggie/2F991AAC7804BC10" = {
+    device = "/dev/disk/by-uuid/2F991AAC7804BC10";
+    fsType = "ntfs";
+    options = ["nosuid,nodev,nofail,x-gvfs-show"];
+  };
+  fileSystems."/run/media/maggie/fedora_fedora00" = {
+    device = "/dev/disk/by-uuid/3b0bc9b2-4356-4302-83b9-7e49f9fc1c59";
+    fsType = "btrfs";
+    options = ["nosuid,nodev,nofail,x-gvfs-show"];
+  };
   networking.hostName = "Nijika"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -25,16 +41,17 @@
 
   
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
 
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm.greeters.slick.enable = true;
+  services.xserver.desktopManager.cinnamon.enable = true;
+  services.displayManager.defaultSession = "cinnamon";
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -68,9 +85,11 @@
 
   
   fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-  ];
+      noto-fonts
+      noto-fonts-cjk-sans
+      corefonts
+      vistafonts
+    ];
 
   # Enable automatic login for the user.
   # services.displayManager.autoLogin.enable = true;
@@ -81,7 +100,12 @@
   # systemd.services."autovt@tty1".enable = false;
 
   # Install firefox.
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+  };
+  programs.kdeconnect.enable = true;
+  
+  programs.corectrl.enable = true;
   programs.fish.enable = true;
   programs.steam = {
   	enable = true;
@@ -116,8 +140,7 @@
      neovim
      helix
      ddcutil
-
-
+     flameshot
     (let base = pkgs.appimageTools.defaultFhsEnvArgs; in
       pkgs.buildFHSEnv (base // {
       name = "fhs";
@@ -127,18 +150,12 @@
     }))
   ];
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [  
-      pkgs.xdg-desktop-portal-gnome
-    ];
-  };
 
-  #qt = {
-  #  enable = true;
-  #  platformTheme = "gnome";
-  #  style = "adwaita-dark";
-  #};
+  qt = {
+    enable = true;
+    platformTheme = "gtk2";
+    style = "gtk2";
+  };
 
 
   # Some programs need SUID wrappers, can be configured further or are

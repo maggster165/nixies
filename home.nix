@@ -1,5 +1,4 @@
-{ config, pkgs, inputs, ...}:
-
+{ config, pkgs, inputs, lib, ...}:
 {
   imports = [
     inputs.moonlight.homeModules.default

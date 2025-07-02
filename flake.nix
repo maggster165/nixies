@@ -10,16 +10,21 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    moonlight = {
+     moonlight = {
       url = "github:moonlight-mod/moonlight";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mpdpkgs.url = "github:NixOS/nixpkgs/c74daf34b6de017d7d43196c494f887a2b956f0f";
   };
 
-  outputs = { self, nixpkgs, spicetify-nix, nix-flatpak, home-manager, moonlight, mpdpkgs, ...}@inputs: {
+  outputs = { self, nixpkgs, spicetify-nix, nix-flatpak, home-manager, moonlight, mpdpkgs, ...}@inputs: let 
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+    in {
     nixosConfigurations.Nijika = nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
       specialArgs = {
         inherit inputs;
 

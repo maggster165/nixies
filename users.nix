@@ -1,5 +1,6 @@
 {config, pkgs, inputs, ...}:
 {
+	
 	users.users.maggie = {
     		isNormalUser = true;
     		description = "Maggie";
@@ -14,6 +15,11 @@
     		gapless
     		video-trimmer
     		tuba
+				mangohud
+				strawberry
+				fsearch
+				handbrake
+				collector
     		];
   	};
   	services.flatpak.enable = true;
